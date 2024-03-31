@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { axiosInstance } from '../../utils/axiosInstance';
 import { ProfileData } from './Header';
+import styles from './Header.module.css'
 
 function SharedProfile({ userData }: { userData: ProfileData }) {
   const [user, setUser] = useState<ProfileData | null>(null);
@@ -19,13 +20,13 @@ function SharedProfile({ userData }: { userData: ProfileData }) {
   return (
     <>
       {user === null ? (
-        <div className="headerButton">
+        <div className={styles.headerButton}>
           <button>로그인</button>
         </div>
       ) : (
-        <div className="profileArea">
-          <img className="profileImage" src={user.profileImageSource} alt="프로필 이미지" />
-          <p className="profileEmail">{user.email}</p>
+          <div className={styles.profileArea}>
+            <img className={styles.profileImage} src={user.profileImageSource} alt="프로필 이미지" />
+            <p className={styles.profileEmail}>{user.email}</p>
         </div>
       )}
     </>

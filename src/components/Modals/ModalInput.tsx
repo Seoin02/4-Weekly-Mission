@@ -1,8 +1,8 @@
 import React from 'react';
-import './Modal.css';
+import styles from './Modal.module.css';
 
 function ModalInput() {
-  return <input className="modalInput" placeholder="내용 입력" />;
+  return <input className={styles.modalInput} placeholder="내용 입력" />;
 }
 
 export default ModalInput;

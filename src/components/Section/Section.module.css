@@ -67,7 +67,7 @@
   background: var(--Linkbrary-bg, #f0f6ff);
 }
 
-#linkAddBar {
+.linkAddBar {
   margin: 60px 0 90px 0;
   display: flex;
   width: 800px;
@@ -81,17 +81,17 @@
   background: var(--Linkbrary-white, #fff);
 }
 
-#linkAddBarText {
+.linkAddBarText {
   display: flex;
   gap: 12px;
 }
 
-#linkAddBarText img {
+.linkAddBarText img {
   width: 20px;
   height: 20px;
 }
 
-#linkAddBarText input {
+.linkAddBarText input {
   color: var(--Linkbrary-gray60, #9fa6b2);
   background: white;
   width: 100%;
@@ -104,7 +104,7 @@
   line-height: 24px; /* 150% */
 }
 
-#linkAddButton {
+.linkAddButton {
   width: 80px;
   height: 37px;
   padding: 10px 16px;

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Section.css';
+import styles from './Section.module.css';
 import FolderInfo from './FolderInfo';
 import LinkBar from './LinkBar';
 import FilterBar from '../FilterBar/FilterBar';
@@ -10,7 +10,7 @@ export default function Section({ style }: HeaderProps) {
   return (
     <>
       <section className={style}>
-        <div className="title">{style === 'sectionShared' ? <FolderInfo /> : <LinkBar />}</div>
+        <div className={styles.title}>{style === 'sectionShared' ? <FolderInfo /> : <LinkBar />}</div>
       </section>
       <div>
         {style === 'sectionShared' ? null : (

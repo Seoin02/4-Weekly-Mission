@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Section.css';
+import styles from './Section.module.css';
 import { axiosInstance } from '../../utils/axiosInstance';
 import type { LinkData } from '../apis/useGetLink';
 
@@ -24,12 +24,12 @@ const FolderInfo: React.FC<FolderInfoProps> = () => {
   return (
     <>
       {folderData && folderData.owner && (
-        <div className="titleContent">
-          <img className="titleLogo" src={folderData.owner.profileImageSource} alt="코드잇 로고" />
+        <div className={styles.titleContent}>
+          <img className={styles.titleLogo} src={folderData.owner.profileImageSource} alt="코드잇 로고" />
           <p>{folderData.owner.name}</p>
         </div>
       )}
-      {folderData && <p className="bookmark">{folderData.name}</p>}
+      {folderData && <p className={styles.bookmark}>{folderData.name}</p>}
     </>
   );
 };

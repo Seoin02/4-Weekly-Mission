@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { axiosInstance } from '../../utils/axiosInstance';
 import Card from '../Card/Card';
-import './CardList.css';
+import styles from './CardList.module.css';
 import { LinkData } from '../apis/useGetLink';
 
 export default function CardList() {
@@ -20,8 +20,8 @@ export default function CardList() {
   }, []);
 
   return (
-    <main id="mainShared">
-      <div className="cardList">{cardData !== null && <Card data={cardData} />}</div>
+    <main className={styles.mainShared}>
+      <div className={styles.cardList}>{cardData !== null && <Card data={cardData} />}</div>
     </main>
   );
 }

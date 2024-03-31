@@ -1,5 +1,4 @@
 import ModalBase from './ModalBase';
-import './Modal.css';
 import { useState } from 'react';
 import type { ModalBaseProps } from './ModalBase';
 

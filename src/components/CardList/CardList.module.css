@@ -1,4 +1,4 @@
-#mainShared {
+.mainShared {
   margin: 40px;
   display: flex;
   flex-direction: column;
@@ -14,14 +14,4 @@
   gap: 25px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-}
-
-#mainDefaultArea {
-  display: flex;
-  width: 100%;
-  max-width: 1060px;
-  height: 100px;
-  padding: 41px 0px 35px 0px;
-  justify-content: center;
-  align-items: center;
 }
