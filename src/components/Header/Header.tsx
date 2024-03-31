@@ -3,6 +3,7 @@ import FolderProfile from './FolderProfile';
 import Image from 'next/image';
 import logo from './images/logo.png';
 import styles from './Header.module.css';
+import Link from 'next/link';
 
 export interface ProfileData {
   profileImageSource: string;
@@ -20,9 +21,9 @@ export default function Header({ style, user }: HeaderProps) {
   return (
     <header className={styles[style]}>
       <div className={styles.headerLogo}>
-        <a href="/">
+        <Link href="/">
           <Image className={styles.logo} src={logo} alt="Linkbrary로고" />
-        </a>
+        </Link>
       </div>
       {style === 'headerShared' && user ? <SharedProfile userData={user} /> : <FolderProfile userData={user} />}
     </header>
