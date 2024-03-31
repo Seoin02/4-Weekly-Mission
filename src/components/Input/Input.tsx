@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
+import Image from 'next/image';
 import styles from './input.module.css';
-import EyeOff from '/public/images/eye-off.svg';
-import EyeOn from '/public/images/eye-on.svg';
 import Error from './Error';
 
 export interface KindOptions {
@@ -43,8 +42,8 @@ const TextForm = ({ kind, onChange, passwordCheck, $error }: Props) => {
   };
 
   //이쪽이 타입을 받아서 파라미터 설정하는것
-  const [isActive, setIsActive] = useState(false);
-  //const [isType, setIsType] = useState(content[kind].type);
+  const [isActive, setIsActive] = useState(true);
+  const [isType, setIsType] = useState(content[kind].type);
   const [word, setWord] = useState('');
   const [isError, setIsError] = useState(true);
   const [errorType, setErrorType] = useState('');
@@ -112,17 +111,21 @@ const TextForm = ({ kind, onChange, passwordCheck, $error }: Props) => {
   return (
     <div className={styles.loginBox}>
       <div className={styles.contentHeader}>{content[kind]?.id?.password?.passwordRepeat.title}</div>
-      <div>
+      <div className={styles.inputContent}>
         <input
           className={`${styles.inputBox} ${isError ? styles.defaultBorderColor : styles.errorBorderColor}`}
           placeholder={content[kind]?.placeholder}
-          type={content[kind]?.isType}
+          type={isActive ? 'text' : 'password'}
           onBlur={handleCheck}
           onChange={onChangeValue}
           $error={isError}></input>
         {kind !== 'id' && (
           <button className={styles.toggleEye} onClick={handleClick}>
-            {isActive ? <EyeOn /> : <EyeOff />}
+            {isActive ? (
+              <Image src="/images/eye-on.svg" width={16} height={16} alt="뜬 눈모양 아이콘" />
+            ) : (
+              <Image src="/images/eye-off.svg" width={16} height={16} alt="감은 눈모양 아이콘" />
+            )}
           </button>
         )}
       </div>

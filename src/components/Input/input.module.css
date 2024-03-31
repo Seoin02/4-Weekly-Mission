@@ -29,6 +29,10 @@
   line-height: 24px;
 }
 
+.inputContent {
+  position: relative;
+}
+
 .writeTextColor {
   color: #373740;
 }
