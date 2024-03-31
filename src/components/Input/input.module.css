@@ -1,0 +1,78 @@
+.loginBox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 350px;
+  margin: auto;
+  padding: 20px;
+}
+
+.contentHeader {
+  display: flex;
+}
+
+.inputBox {
+  display: flex;
+  gap: 6px;
+  width: 350px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 15px;
+  align-items: center;
+  border-radius: 8px;
+  background-color: white;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.writeTextColor {
+  color: #373740;
+}
+
+.defaultTextColor {
+  color: #9fa6b2;
+}
+
+.defaultBorderColor {
+  border: 1px solid #ccd5e3;
+}
+
+.errorBorderColor {
+  border: 1px solid #ff5b56;
+}
+
+.inputBox:focus {
+  border: 1px solid #6d6afe;
+}
+
+.inputBox:active,
+.inputBox:focus {
+  border: 2px solid gray;
+}
+
+.errorMessage {
+  color: red;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.toggleEye {
+  border: none;
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  right: -7%;
+}
+
+.inputPage {
+  width: 100%;
+  height: 100%;
+  background: white;
+}
