@@ -1,9 +1,6 @@
-import facebook from './images/akar-icons_facebook-fill.svg';
-import twitter from './images/akar-icons_twitter-fill.svg';
-import youtube from './images/akar-icons_youtube-fill.svg';
-import instagram from './images/ant-design_instagram-filled.svg';
 import styles from './Footer.module.css';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -20,10 +17,10 @@ export default function Footer() {
         </Link>
       </div>
       <div className={styles.footerLogo}>
-        <img src={facebook} alt="페이스북 로고" />
-        <img src={twitter} alt="트위터 로고" />
-        <img src={youtube} alt="유튜브 로고" />
-        <img src={instagram} alt="인스타그램 로고" />
+        <Image src="/images/facebook.svg" width={20} height={20} alt="페이스북 로고" />
+        <Image src="/images/twitter.svg" width={20} height={20} alt="트위터 로고" />
+        <Image src="/images/youtube.svg" width={20} height={20} alt="유튜브 로고" />
+        <Image src="/images/instagram.svg" width={20} height={20} alt="인스타그램 로고" />
       </div>
     </footer>
   );

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AddToFolderModal from '../Modals/AddToFolderModal';
 import styles from './Section.module.css';
+import Image from 'next/image';
 
 function LinkBar() {
   const [addToFolderModalOpen, setAddToFolderModalOpen] = useState(false);
@@ -11,7 +12,7 @@ function LinkBar() {
   return (
     <div className={styles.linkAddBar}>
       <div className={styles.linkAddBarText}>
-        <img src={`${process.env.PUBLIC_URL}/images/linkIcon.svg`} alt="링크 추가 아이콘" />
+        <Image src="/images/linkIcon.svg" width={16} height={16} alt="링크 추가 아이콘" />
         <input type="text" placeholder="링크를 추가해 보세요"></input>
       </div>
       <button type="submit" className={styles.linkAddButton} onClick={() => setAddToFolderModalOpen(true)}>

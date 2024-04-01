@@ -10,6 +10,7 @@ import ShareModal from '../Modals/ShareModal';
 import AddFolderModal from '../Modals/AddFolderModal';
 import type { LinkData } from '../apis/useGetLink';
 import { useAsync } from '../../hooks/useAsync';
+import Image from 'next/image';
 
 const folderFormatDate: (data: LinkData[]) => { name?: string | number; id?: string | number }[] = data => {
   const formattedFolder = data.map(({ name, id }) => ({ name, id }));
@@ -44,27 +45,27 @@ export default function FilterBar() {
     setFolderName(name);
   };
 
-  const useGetData = (folderId: string) => {
-    const getDatas = useCallback(() => axiosInstance.get<LinkData[]>('users/4/folders'), []);
-    const { execute, loading, error, data } = useAsync(getDatas);
+  // const useGetData = (folderId: string) => {
+  //   const getDatas = useCallback(() => axiosInstance.get<LinkData[]>('users/4/folders'), []);
+  //   const { execute, loading, error, data } = useAsync(getDatas);
 
-    useEffect(() => {
-      execute();
-    }, []);
-  };
+  //   useEffect(() => {
+  //     execute();
+  //   }, []);
+  // };
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const { data } = await axiosInstance.get('users/4/folders');
-  //       setFolderData(mapFormatDate(data.data));
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   }
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await axiosInstance.get('users/4/folders');
+        setFolderData(folderFormatDate(data.data));
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
 
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -73,7 +74,7 @@ export default function FilterBar() {
     <>
       <div className={styles.filterBarArea}>
         <div className={styles.floatingButton}>
-          폴더 추가 <img src={`${process.env.PUBLIC_URL}/images/addWhite.svg`} alt="추가 아이콘"></img>
+          폴더 추가 <Image src="/images/addWhite.svg" width={18} height={18} alt="추가 아이콘" />
         </div>
         {addFolderModalOpen && <AddFolderModal onClose={handleClose} />}
         <div className={styles.filterBar}>
@@ -84,7 +85,7 @@ export default function FilterBar() {
               folderData.map(({ id, name }) => (
                 <button
                   key={id}
-                  className={`${styles.filterBarButton} ${folderId == id ? 'selected' : ''}`}
+                  className={`${styles.filterBarButton} ${folderId == id ? styles.selected : ''}`}
                   type="button"
                   value={id}
                   onClick={() => {
@@ -97,8 +98,8 @@ export default function FilterBar() {
           </div>
 
           <div className={styles.filterBarRight}>
-            <div className="addButton" onClick={() => setAddFolderModalOpen(true)}>
-              폴더 추가 <img src={`${process.env.PUBLIC_URL}/images/add.svg`} alt="추가 아이콘"></img>
+            <div className={styles.addButton} onClick={() => setAddFolderModalOpen(true)}>
+              폴더 추가 <Image src="/images/add.svg" width={16} height={16} alt="추가 아이콘" />
             </div>
             {addFolderModalOpen && <AddFolderModal onClose={handleClose} />}
           </div>
@@ -108,24 +109,24 @@ export default function FilterBar() {
           {folderName !== DEFAULT_FOLDER.name ? (
             <div className={styles.modalButtons}>
               <div className={styles.modalButton} onClick={() => setShareModalOpen(true)}>
-                <img src={`${process.env.PUBLIC_URL}/images/share.svg`} alt="공유 아이콘"></img>
+                <Image src="/images/share.svg" width={18} height={18} alt="공유 아이콘" />
                 <span>공유</span>
               </div>
               {shareModalOpen && <ShareModal onClose={handleClose} />}
               <div className={styles.modalButton} onClick={() => setEditNameModalOpen(true)}>
-                <img src={`${process.env.PUBLIC_URL}/images/pen.svg`} alt="연필 아이콘" />
+                <Image src="/images/pen.svg" width={18} height={18} alt="연필 아이콘" />
                 <span>이름 변경</span>
               </div>
               {editNameModalOpen && <EditNameModal onClose={handleClose} />}
               <div className={styles.modalButton} onClick={() => setDeleteFolderModalOpen(true)}>
-                <img src={`${process.env.PUBLIC_URL}/images/trashbin.svg`} alt="휴지통 아이콘"></img>
+                <Image src="/images/trashbin.svg" width={18} height={18} alt="휴지통 아이콘" />
                 <span>삭제</span>
               </div>
               {deleteFolderModalOpen && <DeleteFolderModal onClose={handleClose} />}
             </div>
           ) : null}
         </div>
-        <div className={!linksData.length ? '' : 'styles.cardStyle'}>
+        <div className={!linksData.length ? '' : styles.cardStyle}>
           {!loading ? <Card data={linksData} /> : <div>Loading...</div>}
         </div>
       </div>

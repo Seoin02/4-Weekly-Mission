@@ -9,7 +9,7 @@ import type { HeaderProps } from '../Header/Header';
 export default function Section({ style }: HeaderProps) {
   return (
     <>
-      <section className={style}>
+      <section className={styles[style]}>
         <div className={styles.title}>{style === 'sectionShared' ? <FolderInfo /> : <LinkBar />}</div>
       </section>
       <div>
