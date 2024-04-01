@@ -4,13 +4,13 @@ import styles from '../src/components/Input/input.module.css';
 
 export default function Input() {
   const [id, setId] = useState<string>('');
-  const [password, setPassword] = useState<number>('');
+  const [password, setPassword] = useState<number>();
 
-  const handleIdChange = id => {
+  const handleIdChange = (id: string) => {
     setId(id);
   };
 
-  const handlePasswordChange = password => {
+  const handlePasswordChange = (password: number) => {
     setPassword(password);
   };
 
