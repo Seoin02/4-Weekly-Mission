@@ -2,7 +2,6 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import styles from './Modal.module.css';
-import styled from 'styled-components';
 import type { ModalBaseProps } from './ModalBase';
 import shareKakaoLink from '../../utils/shareKakaoLink';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -17,7 +16,7 @@ function ShareModal({ onClose }: ModalBaseProps) {
         onClick={e => {
           e.stopPropagation();
         }}>
-        <FontAwesomeIcon icon={faXmark} className="EditModalX" onClick={onClose} />
+        <FontAwesomeIcon icon={faXmark} className={styles.modalX} onClick={onClose} />
         <p className={styles.modalText}>폴더 공유</p>
         <div className={styles.centerSpace}>폴더명</div>
         <div className={styles.snsButton}>
