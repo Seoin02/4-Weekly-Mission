@@ -26,18 +26,18 @@ function ShareModal({ onClose }: ModalBaseProps) {
             onClick={() => {
               shareKakaoLink(currentUrl, '카카오톡 공유하기');
             }}>
-            <img src={`${process.env.PUBLIC_URL}/images/Kakao.png`} alt="카카오톡 공유 아이콘" />
+            <img src="/images/Kakao.png" alt="카카오톡 공유 아이콘" />
           </button>
           <button
             className={styles.facebookShareWrapper}
             onClick={() => {
               window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`, '페이스북 공유하기');
             }}>
-            <img src={`${process.env.PUBLIC_URL}/images/Facebook.png`} alt="페이스북 공유 아이콘" />
+            <img src="/images/Facebook.png" alt="페이스북 공유 아이콘" />
           </button>
           <CopyToClipboard text={currentUrl} onCopy={() => alert('URL이 복사됐습니다')}>
             <button className={styles.urlShareWrapper}>
-              <img src={`${process.env.PUBLIC_URL}/images/link.png`} alt="URL 공유 아이콘" />
+              <img src="/images/link.png" alt="URL 공유 아이콘" />
             </button>
           </CopyToClipboard>
         </div>

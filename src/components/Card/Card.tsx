@@ -49,7 +49,7 @@ const Card: React.FC<Props> = ({ data }) => {
               <div className={styles.uploadTime}>
                 <div>{getElapsedTime(link.created_at ?? link.createdAt)} </div>
                 <button type="button" key={link.id} onClick={handleOpenPopoverMenu}>
-                  <img src={`${process.env.PUBLIC_URL}/images/kebab.png`} alt="팝오버 아이콘" />
+                  <img src="/images/kebab.png" width={21} height={17} alt="팝오버 아이콘" />
                 </button>
                 {popoverMenuOpen && <PopoverMenu onClose={handleClosePopoverMenu} />}
               </div>
