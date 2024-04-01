@@ -20,7 +20,7 @@ export default function CardList() {
   }, []);
 
   return (
-    <main className={styles.mainShared}>
+    <main className={styles.mainSharedCard}>
       <div className={styles.cardList}>{cardData !== null && <Card data={cardData} />}</div>
     </main>
   );

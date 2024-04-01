@@ -1,5 +1,4 @@
-.mainShared {
-  margin: 40px;
+.mainSharedCard {
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -7,6 +6,7 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
+  background-color: white;
 }
 
 .cardList {
