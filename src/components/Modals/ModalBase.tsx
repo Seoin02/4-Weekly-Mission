@@ -4,13 +4,13 @@ import { PropsWithChildren } from 'react';
 import styles from './Modal.module.css';
 
 export interface ModalBaseProps {
-  modalName?: string;
+  title?: string;
   onClick?: () => void;
   centerSpace?: React.ReactNode;
   onClose?: () => void;
 }
 
-function ModalBase({ modalName, children, onClick, centerSpace, onClose }: PropsWithChildren<ModalBaseProps>) {
+function ModalBase({ title, onClose, children }: PropsWithChildren<ModalBaseProps>) {
   return (
     <div className={styles.modalBase} onClick={onClose}>
       <div
@@ -19,11 +19,8 @@ function ModalBase({ modalName, children, onClick, centerSpace, onClose }: Props
           e.stopPropagation();
         }}>
         <FontAwesomeIcon icon={faXmark} className={styles.modalX} onClick={onClose} />
-        <p className={styles.modalText}>{modalName}</p>
-        <div className={styles.centerSpace}>{centerSpace}</div>
-        <button className={styles.modalButton} onClick={onClick}>
-          {children}
-        </button>
+        <p className={styles.modalText}>{title}</p>
+        {children}
       </div>
     </div>
   );

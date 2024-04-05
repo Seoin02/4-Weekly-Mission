@@ -1,24 +1,23 @@
 import ModalBase from './ModalBase';
 import { useState } from 'react';
 import type { ModalBaseProps } from './ModalBase';
+import ModalBody from './ModalBody';
+import ModalFooter from './ModalFooter';
 
 function DeleteLinkModal({ onClose }: ModalBaseProps) {
-  const [deleteLink, setDeleteLink] = useState(false);
+  const [link, setLink] = useState(false);
 
-  function handleChange() {
-    setDeleteLink(true);
+  function deleteLink() {
+    setLink(true);
   }
 
   return (
-    <div onClick={onClose}>
-      <ModalBase
-        modalName="링크 삭제"
-        children="삭제하기"
-        onClick={handleChange}
-        centerSpace={<span>http://www.abc.com</span>}
-        onClose={onClose}
-      />
-    </div>
+    <ModalBase title="링크 삭제" onClose={onClose}>
+      <ModalBody>
+        <span>http://www.abc.com</span>
+      </ModalBody>
+      <ModalFooter children="삭제하기" onClick={deleteLink} />
+    </ModalBase>
   );
 }
 

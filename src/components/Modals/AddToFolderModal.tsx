@@ -1,11 +1,13 @@
 import ModalBase from './ModalBase';
 import { useState } from 'react';
 import type { ModalBaseProps } from './ModalBase';
+import ModalBody from './ModalBody';
+import ModalFooter from './ModalFooter';
 
 function AddToFolderModal({ onClose }: ModalBaseProps) {
-  const [addToFolder, setAddToFolder] = useState('');
-  function handleChange() {
-    setAddToFolder('');
+  const [folder, setFolder] = useState('');
+  function addToFolder() {
+    setFolder('');
   }
 
   function AddToFolderModalText() {
@@ -13,17 +15,16 @@ function AddToFolderModal({ onClose }: ModalBaseProps) {
       <>
         <span>링크 주소</span>
         <div>
-          <div>
-            코딩팁 <span>7개 링크</span>
-          </div>
+          코딩팁 <span>7개 링크</span>
         </div>
       </>
     );
   }
 
   return (
-    <ModalBase modalName="폴더에 추가" centerSpace={<AddToFolderModalText />} onClick={handleChange} onClose={onClose}>
-      추가하기
+    <ModalBase title="폴더에 추가" onClose={onClose}>
+      <ModalBody centerSpace={<AddToFolderModalText />} />
+      <ModalFooter children="추가하기" onClick={addToFolder} />
     </ModalBase>
   );
 }
