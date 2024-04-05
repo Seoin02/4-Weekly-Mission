@@ -12,19 +12,19 @@ export interface ProfileData {
 }
 
 export interface HeaderProps {
-  style: string;
+  isShared?: boolean;
   user?: ProfileData;
 }
 
-export default function Header({ style, user }: HeaderProps) {
+export default function Header({ isShared, user }: HeaderProps) {
   return (
-    <header className={styles[style]}>
+    <header className={isShared ? styles.headerShared : styles.headerFolder}>
       <div className={styles.headerLogo}>
         <Link href="/">
           <Image className={styles.logo} src="/images/logo.png" width={132} height={24} alt="Linkbrary로고" />
         </Link>
       </div>
-      {style === 'headerShared' && user ? <SharedProfile userData={user} /> : <FolderProfile userData={user} />}
+      {<SharedProfile isShared={true} userData={user} /> || <FolderProfile isShared={false} userData={user} />}
     </header>
   );
 }

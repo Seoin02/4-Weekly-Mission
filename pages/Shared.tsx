@@ -7,7 +7,7 @@ import SearchBar from '../src/components/SearchBar/SearchBar';
 export default function Shared() {
   return (
     <>
-      <Header style="headerShared" />
+      <Header isShared />
       <Section style="sectionShared" />
       <SearchBar />
       <CardList />
