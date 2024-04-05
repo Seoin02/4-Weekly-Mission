@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Moment from 'moment';
+import dayjs from 'dayjs';
 import { getElapsedTime } from '../../utils/getElapsedTime';
 import styles from './Card.module.css';
 import type { LinkData } from '../apis/useGetLink';
@@ -55,9 +55,7 @@ const Card: React.FC<Props> = ({ data }) => {
               </div>
               <Link className={styles.link} href={link.url}>
                 <div className={styles.cardText}>{link.description}</div>
-                <div className={styles.uploadDate}>
-                  {Moment(link.created_at || link.createdAt).format('YYYY.MM.DD')}
-                </div>
+                <div className={styles.uploadDate}>{dayjs(link.created_at || link.createdAt).format('YYYY.MM.DD')}</div>
               </Link>
             </div>
           </div>
