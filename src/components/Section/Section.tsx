@@ -6,14 +6,14 @@ import FilterBar from '../FilterBar/FilterBar';
 import SearchBar from '../SearchBar/SearchBar';
 import type { HeaderProps } from '../Header/Header';
 
-export default function Section({ style }: HeaderProps) {
+export default function Section({ isShared }: HeaderProps) {
   return (
     <>
-      <section className={styles[style]}>
-        <div className={styles.title}>{style === 'sectionShared' ? <FolderInfo /> : <LinkBar />}</div>
+      <section className={isShared ? styles.sectionShared : styles.sectionFolder}>
+        <div className={styles.title}>{isShared ? <FolderInfo /> : <LinkBar />}</div>
       </section>
       <div>
-        {style === 'sectionShared' ? null : (
+        {isShared ? null : (
           <>
             <SearchBar />
             <FilterBar />

@@ -8,7 +8,7 @@ export default function Shared() {
   return (
     <>
       <Header isShared />
-      <Section style="sectionShared" />
+      <Section isShared />
       <SearchBar />
       <CardList />
       <Footer />

@@ -16,7 +16,7 @@ export default function Folder() {
       {isClient && (
         <ModalPortal>
           <Header />
-          <Section style="sectionFolder" />
+          <Section />
           <Footer />
         </ModalPortal>
       )}
