@@ -1,7 +1,9 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import styles from './input.module.css';
 import Error from './Error';
+import EMAIL_REGEX from '@/src/utils/constants/emailRegex';
+import PASSWORD_REGEX from '@/src/utils/constants/passwordRegex';
 
 export interface KindOptions {
   placeholder?: string;
@@ -48,10 +50,6 @@ const TextForm = ({ kind, onChange, passwordCheck, $error }: Partial<Props>) => 
   const [isError, setIsError] = useState(true);
   const [errorType, setErrorType] = useState('');
 
-  //정규식
-  const EMAILPATTERN: RegExp = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-  const PASSWORDPATTERN: RegExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,30}$/;
-
   //정규식 타입
   type Check = {
     [key: string]: {
@@ -86,13 +84,13 @@ const TextForm = ({ kind, onChange, passwordCheck, $error }: Partial<Props>) => 
 
   const CHECK: Check = {
     id: {
-      isValidCheck: EMAILPATTERN,
+      isValidCheck: EMAIL_REGEX,
     },
     password: {
-      isValidCheck: PASSWORDPATTERN,
+      isValidCheck: PASSWORD_REGEX,
     },
     passwordRepeat: {
-      isValidCheck: PASSWORDPATTERN,
+      isValidCheck: PASSWORD_REGEX,
     },
   };
 
