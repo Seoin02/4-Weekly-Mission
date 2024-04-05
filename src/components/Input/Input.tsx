@@ -2,48 +2,20 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import styles from './input.module.css';
 import Error from './Error';
-import EMAIL_REGEX from '@/src/utils/constants/emailRegex';
-import PASSWORD_REGEX from '@/src/utils/constants/passwordRegex';
+import VALID_CHECK from '@/src/utils/constants/validCheck';
 import { Props } from './InputType';
+import INPUT_CONTENT from '@/src/utils/constants/inputContent';
 
-const TextForm = ({ kind, onChange, passwordCheck, $error }: Partial<Props>) => {
-  const content = {
-    id: {
-      placeholder: '아이디를 입력해주세요.',
-      type: 'text',
-      error: '아이디가 없습니다.',
-      isPassword: false,
-    },
-    password: {
-      placeholder: '비밀번호를 입력해주세요.',
-      type: 'password',
-      error: '비밀번호가 없습니다.',
-      isPassword: true,
-    },
-    passwordRepeat: {
-      placeholder: '비밀번호를 확인해주세요.',
-      type: 'password',
-      error: '비밀번호가 일치하지 않습니다.',
-      isPassword: true,
-    },
-  };
-
+const TextForm = ({ kind, onChange, passwordCheck, error }: Partial<Props>) => {
   //이쪽이 타입을 받아서 파라미터 설정하는것
   const [isActive, setIsActive] = useState(true);
-  const [currentType, setCurrentType] = useState(content[kind].type);
+  const [currentType, setCurrentType] = useState(INPUT_CONTENT[kind].type);
   const [value, setValue] = useState('');
   const [isError, setIsError] = useState(true);
   const [errorType, setErrorType] = useState('');
 
-  //정규식 타입
-  type Check = {
-    [key: string]: {
-      isValidCheck: RegExp;
-    };
-  };
-
   //블러 시 정규식에 맞는지 체크
-  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const checkValidValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsError(false);
     if (value.trim() !== '') {
       if (kind === 'passwordRepeat') {
@@ -54,7 +26,7 @@ const TextForm = ({ kind, onChange, passwordCheck, $error }: Partial<Props>) => 
           setErrorType('errorGrammar2');
         }
       } else {
-        if (CHECK[kind].isValidCheck.test(value.trim())) {
+        if (VALID_CHECK[kind].isValidCheck.test(value.trim())) {
           setIsError(true);
         } else {
           setIsError(false);
@@ -65,18 +37,6 @@ const TextForm = ({ kind, onChange, passwordCheck, $error }: Partial<Props>) => 
       setIsError(false);
       setErrorType('errorNone');
     }
-  };
-
-  const CHECK: Check = {
-    id: {
-      isValidCheck: EMAIL_REGEX,
-    },
-    password: {
-      isValidCheck: PASSWORD_REGEX,
-    },
-    passwordRepeat: {
-      isValidCheck: PASSWORD_REGEX,
-    },
   };
 
   // 온체인지시 값 적용
@@ -93,15 +53,15 @@ const TextForm = ({ kind, onChange, passwordCheck, $error }: Partial<Props>) => 
 
   return (
     <div className={styles.loginBox}>
-      <div className={styles.contentHeader}>{content[kind]?.id?.password?.passwordRepeat.title}</div>
+      <div className={styles.contentHeader}>{INPUT_CONTENT[kind]?.id?.password?.passwordRepeat.title}</div>
       <div className={styles.inputContent}>
         <input
           className={`${styles.inputBox} ${isError ? styles.defaultBorderColor : styles.errorBorderColor}`}
-          placeholder={content[kind]?.placeholder}
+          placeholder={INPUT_CONTENT[kind]?.placeholder}
           type={isActive ? 'text' : 'password'}
-          onBlur={handleCheck}
+          onBlur={checkValidValue}
           onChange={onChangeValue}
-          $error={isError}></input>
+          error={isError}></input>
         {kind !== 'id' && (
           <button className={styles.toggleEye} onClick={handleClick}>
             {isActive ? (

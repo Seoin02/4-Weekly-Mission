@@ -1,8 +1,6 @@
 interface KindOptions {
   placeholder?: string;
   type?: string;
-  error?: string;
-  isPassword?: boolean;
 }
 
 export interface Props extends KindOptions {
@@ -11,5 +9,11 @@ export interface Props extends KindOptions {
   onChange: (value: string | number) => void;
   onBlur: Event;
   passwordCheck: string;
-  $error: boolean;
+  error: boolean;
 }
+
+export type Check = {
+  [key: string]: {
+    isValidCheck: RegExp;
+  };
+};
