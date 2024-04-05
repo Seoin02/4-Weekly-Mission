@@ -5,7 +5,7 @@ import type { ModalBaseProps } from './ModalBase';
 import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
 
-function AddFolderModal({ onClose }: ModalBaseProps) {
+function AddFolderModal({ onClose, children }: ModalBaseProps) {
   const [folder, setFolder] = useState('');
 
   function addFolder() {

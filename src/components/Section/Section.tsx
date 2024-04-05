@@ -12,14 +12,12 @@ export default function Section({ isShared }: HeaderProps) {
       <section className={isShared ? styles.sectionShared : styles.sectionFolder}>
         <div className={styles.title}>{isShared ? <FolderInfo /> : <LinkBar />}</div>
       </section>
-      <div>
-        {isShared ? null : (
-          <>
-            <SearchBar />
-            <FilterBar />
-          </>
-        )}
-      </div>
+      {!isShared && (
+        <>
+          <SearchBar />
+          <FilterBar />
+        </>
+      )}
     </>
   );
 }

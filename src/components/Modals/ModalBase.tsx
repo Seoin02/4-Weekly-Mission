@@ -4,10 +4,9 @@ import { PropsWithChildren } from 'react';
 import styles from './Modal.module.css';
 
 export interface ModalBaseProps {
-  title?: string;
-  onClick?: () => void;
-  centerSpace?: React.ReactNode;
+  title: string;
   onClose?: () => void;
+  children: PropsWithChildren;
 }
 
 function ModalBase({ title, onClose, children }: PropsWithChildren<ModalBaseProps>) {

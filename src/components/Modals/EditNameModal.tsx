@@ -3,9 +3,8 @@ import ModalInput from './ModalInput';
 import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
 import { useState } from 'react';
-import type { ModalBaseProps } from './ModalBase';
 
-function EditNameModal({ onClose }: ModalBaseProps) {
+function EditNameModal({ onClose }: { onClose: () => void }) {
   const [name, setName] = useState('');
 
   function editName() {

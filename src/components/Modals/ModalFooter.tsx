@@ -1,8 +1,7 @@
 import { PropsWithChildren } from 'react';
 import styles from './Modal.module.css';
-import type { ModalBaseProps } from './ModalBase';
 
-function ModalFooter({ children, onClick }: PropsWithChildren<ModalBaseProps>) {
+function ModalFooter({ children, onClick }: { children: PropsWithChildren; onClick: () => void }) {
   return (
     <button className={styles.modalButton} onClick={onClick}>
       {children}

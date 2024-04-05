@@ -30,7 +30,7 @@ function ShareModal({ onClose }: ModalBaseProps) {
           <button
             className={styles.facebookShareWrapper}
             onClick={() => {
-              window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`, '페이스북 공유하기');
+              window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`, '_blank', '페이스북 공유하기');
             }}>
             <img src="/images/Facebook.png" alt="페이스북 공유 아이콘" />
           </button>

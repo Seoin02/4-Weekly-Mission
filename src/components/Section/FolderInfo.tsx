@@ -21,15 +21,18 @@ const FolderInfo: React.FC<FolderInfoProps> = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  if (!folderData) return <></>;
+
   return (
     <>
-      {folderData && folderData.owner && (
+      {folderData.owner && (
         <div className={styles.titleContent}>
           <img className={styles.titleLogo} src={folderData.owner.profileImageSource} alt="코드잇 로고" />
           <p>{folderData.owner.name}</p>
         </div>
       )}
-      {folderData && <p className={styles.bookmark}>{folderData.name}</p>}
+      <p className={styles.bookmark}>{folderData.name}</p>
     </>
   );
 };
