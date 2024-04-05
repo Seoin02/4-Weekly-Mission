@@ -4,22 +4,7 @@ import styles from './input.module.css';
 import Error from './Error';
 import EMAIL_REGEX from '@/src/utils/constants/emailRegex';
 import PASSWORD_REGEX from '@/src/utils/constants/passwordRegex';
-
-export interface KindOptions {
-  placeholder?: string;
-  type?: string;
-  error?: string;
-  isPassword?: boolean;
-}
-
-export interface Props extends KindOptions {
-  kind: string;
-  type: string;
-  onChange: (value: string | number) => void;
-  onBlur: Event;
-  passwordCheck: string;
-  $error: boolean;
-}
+import { Props } from './InputType';
 
 const TextForm = ({ kind, onChange, passwordCheck, $error }: Partial<Props>) => {
   const content = {
