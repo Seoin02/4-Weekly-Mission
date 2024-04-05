@@ -11,15 +11,15 @@ export interface KindOptions {
 }
 
 export interface Props extends KindOptions {
-  kind?: string;
-  type?: string;
-  onChange?: (value: string | number) => void;
-  onBlur?: Event;
-  passwordCheck?: string;
-  $error?: boolean;
+  kind: string;
+  type: string;
+  onChange: (value: string | number) => void;
+  onBlur: Event;
+  passwordCheck: string;
+  $error: boolean;
 }
 
-const TextForm = ({ kind, onChange, passwordCheck, $error }: Props) => {
+const TextForm = ({ kind, onChange, passwordCheck, $error }: Partial<Props>) => {
   const content = {
     id: {
       placeholder: '아이디를 입력해주세요.',
@@ -43,8 +43,8 @@ const TextForm = ({ kind, onChange, passwordCheck, $error }: Props) => {
 
   //이쪽이 타입을 받아서 파라미터 설정하는것
   const [isActive, setIsActive] = useState(true);
-  const [isType, setIsType] = useState(content[kind].type);
-  const [word, setWord] = useState('');
+  const [currentType, setCurrentType] = useState(content[kind].type);
+  const [value, setValue] = useState('');
   const [isError, setIsError] = useState(true);
   const [errorType, setErrorType] = useState('');
 
@@ -62,16 +62,16 @@ const TextForm = ({ kind, onChange, passwordCheck, $error }: Props) => {
   //블러 시 정규식에 맞는지 체크
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsError(false);
-    if (word.trim() !== '') {
+    if (value.trim() !== '') {
       if (kind === 'passwordRepeat') {
-        if (passwordCheck === word) {
+        if (passwordCheck === value) {
           setIsError(true);
         } else {
           setIsError(false);
           setErrorType('errorGrammar2');
         }
       } else {
-        if (CHECK[kind].isValidCheck.test(word.trim())) {
+        if (CHECK[kind].isValidCheck.test(value.trim())) {
           setIsError(true);
         } else {
           setIsError(false);
@@ -99,12 +99,12 @@ const TextForm = ({ kind, onChange, passwordCheck, $error }: Props) => {
   // 온체인지시 값 적용
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setWord(value);
+    setValue(value);
     onChange(value);
   };
 
   const handleClick = () => {
-    isType === 'password' ? setIsType('text') : setIsType('password');
+    currentType === 'password' ? setCurrentType('text') : setCurrentType('password');
     setIsActive(!isActive);
   };
 
