@@ -13,7 +13,7 @@ const TextForm = ({
   passwordCheck,
 }: {
   kind: Key;
-  onChange?: () => void;
+  onChange: () => void;
   passwordCheck?: StringOrNumber;
 }) => {
   //이쪽이 타입을 받아서 파라미터 설정하는것
@@ -32,7 +32,7 @@ const TextForm = ({
           setIsError(true);
         } else {
           setIsError(false);
-          setErrorType('errorGrammar2');
+          setErrorType('errorGrammar');
         }
       } else {
         if (VALID_CHECK[kind].isValidCheck.test(value.trim())) {
@@ -52,6 +52,7 @@ const TextForm = ({
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setValue(value);
+    onChange();
   };
 
   const handleClick = () => {

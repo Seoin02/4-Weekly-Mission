@@ -4,8 +4,9 @@ import styles from '../src/components/Input/input.module.css';
 import { StringOrNumber } from '@/src/components/Input/InputType';
 
 export default function Input() {
-  const [id, setId] = useState<StringOrNumber>('');
+  const [id, setId] = useState<StringOrNumber>();
   const [password, setPassword] = useState<StringOrNumber>();
+  const [passwordRepeat, setPasswordRepeat] = useState<StringOrNumber>();
 
   const handleIdChange = () => {
     setId(id);
@@ -15,11 +16,15 @@ export default function Input() {
     setPassword(password);
   };
 
+  const handlePasswordRepeatChange = () => {
+    setPasswordRepeat(passwordRepeat);
+  };
+
   return (
     <div className={styles.inputPage}>
       <TextForm kind="id" onChange={handleIdChange} />
       <TextForm kind="password" onChange={handlePasswordChange} />
-      <TextForm kind="passwordRepeat" passwordCheck={password} />
+      <TextForm kind="passwordRepeat" onChange={handlePasswordRepeatChange} passwordCheck={password} />
     </div>
   );
 }
