@@ -2,11 +2,10 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import styles from './Modal.module.css';
-import type { ModalBaseProps } from './ModalBase';
 import shareKakaoLink from '../../utils/shareKakaoLink';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-function ShareModal({ onClose }: ModalBaseProps) {
+function ShareModal({ onClose }: { onClose: () => void }) {
   const currentUrl = 'https://thunderous-chimera-786e0d.netlify.app';
 
   return (

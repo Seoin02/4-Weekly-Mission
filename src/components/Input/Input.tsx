@@ -6,7 +6,7 @@ import VALID_CHECK from '@/src/utils/constants/validCheck';
 import { Props } from './InputType';
 import INPUT_CONTENT from '@/src/utils/constants/inputContent';
 
-const TextForm = ({ kind, onChange, passwordCheck, error }: Partial<Props>) => {
+const TextForm = ({ kind, onChange, passwordCheck }: Props) => {
   //이쪽이 타입을 받아서 파라미터 설정하는것
   const [isActive, setIsActive] = useState(true);
   const [currentType, setCurrentType] = useState(INPUT_CONTENT[kind].type);
@@ -53,15 +53,14 @@ const TextForm = ({ kind, onChange, passwordCheck, error }: Partial<Props>) => {
 
   return (
     <div className={styles.loginBox}>
-      <div className={styles.contentHeader}>{INPUT_CONTENT[kind]?.id?.password?.passwordRepeat.title}</div>
+      <div className={styles.contentHeader}>{INPUT_CONTENT[kind].title}</div>
       <div className={styles.inputContent}>
         <input
           className={`${styles.inputBox} ${isError ? styles.defaultBorderColor : styles.errorBorderColor}`}
-          placeholder={INPUT_CONTENT[kind]?.placeholder}
+          placeholder={INPUT_CONTENT[kind].placeholder}
           type={isActive ? 'text' : 'password'}
           onBlur={checkValidValue}
-          onChange={onChangeValue}
-          error={isError}></input>
+          onChange={onChangeValue}></input>
         {kind !== 'id' && (
           <button className={styles.toggleEye} onClick={handleClick}>
             {isActive ? (
@@ -72,7 +71,7 @@ const TextForm = ({ kind, onChange, passwordCheck, error }: Partial<Props>) => {
           </button>
         )}
       </div>
-      {isError === false && <Error kind={kind} text={errorType} />}
+      {isError === false && <Error kind={kind} text={text} />}
     </div>
   );
 };

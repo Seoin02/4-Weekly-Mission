@@ -13,7 +13,8 @@ export interface ProfileData {
 
 export interface HeaderProps {
   isShared?: boolean;
-  user?: ProfileData;
+  user?: any;
+  userData?: ProfileData;
 }
 
 export default function Header({ isShared, user }: HeaderProps) {
@@ -24,7 +25,7 @@ export default function Header({ isShared, user }: HeaderProps) {
           <Image className={styles.logo} src="/images/logo.png" width={132} height={24} alt="Linkbrary로고" />
         </Link>
       </div>
-      {<SharedProfile isShared={true} userData={user} /> || <FolderProfile isShared={false} userData={user} />}
+      {isShared ? <SharedProfile userData={user} /> : <FolderProfile userData={user} />}
     </header>
   );
 }

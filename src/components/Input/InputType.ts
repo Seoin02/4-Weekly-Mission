@@ -1,15 +1,13 @@
-interface KindOptions {
-  placeholder?: string;
-  type?: string;
-}
-
-export interface Props extends KindOptions {
+export interface Props {
   kind: string;
   type: string;
-  onChange: (value: string | number) => void;
+  onChange: (value: StringOrNumber) => void;
   onBlur: Event;
-  passwordCheck: string;
+  passwordCheck: StringOrNumber;
   error: boolean;
+  id: StringOrNumber;
+  password: StringOrNumber;
+  passwordRepeat: StringOrNumber;
 }
 
 export type Check = {
@@ -17,3 +15,5 @@ export type Check = {
     isValidCheck: RegExp;
   };
 };
+
+export type StringOrNumber = string | number;

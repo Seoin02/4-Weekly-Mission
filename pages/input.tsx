@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import TextForm from '../src/components/Input/Input';
 import styles from '../src/components/Input/input.module.css';
+import { StringOrNumber } from '@/src/components/Input/InputType';
 
 export default function Input() {
-  const [id, setId] = useState<string>('');
-  const [password, setPassword] = useState<number>();
+  const [id, setId] = useState<StringOrNumber>('');
+  const [password, setPassword] = useState<StringOrNumber>();
 
-  const handleIdChange = (id: string) => {
+  const handleIdChange = (id: StringOrNumber) => {
     setId(id);
   };
 
-  const handlePasswordChange = (password: number) => {
+  const handlePasswordChange = (password: StringOrNumber) => {
     setPassword(password);
   };
 

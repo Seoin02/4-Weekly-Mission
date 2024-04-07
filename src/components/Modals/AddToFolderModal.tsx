@@ -1,10 +1,9 @@
 import ModalBase from './ModalBase';
 import { useState } from 'react';
-import type { ModalBaseProps } from './ModalBase';
 import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
 
-function AddToFolderModal({ onClose }: ModalBaseProps) {
+function AddToFolderModal({ onClose }: { onClose: () => void }) {
   const [folder, setFolder] = useState('');
   function addToFolder() {
     setFolder('');
@@ -23,7 +22,9 @@ function AddToFolderModal({ onClose }: ModalBaseProps) {
 
   return (
     <ModalBase title="폴더에 추가" onClose={onClose}>
-      <ModalBody centerSpace={<AddToFolderModalText />} />
+      <ModalBody>
+        <AddToFolderModalText />
+      </ModalBody>
       <ModalFooter children="추가하기" onClick={addToFolder} />
     </ModalBase>
   );

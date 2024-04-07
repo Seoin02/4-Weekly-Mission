@@ -1,10 +1,9 @@
 import ModalBase from './ModalBase';
 import { useState } from 'react';
-import type { ModalBaseProps } from './ModalBase';
 import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
 
-function DeleteLinkModal({ onClose }: ModalBaseProps) {
+function DeleteLinkModal({ onClose }: { onClose: () => void }) {
   const [link, setLink] = useState(false);
 
   function deleteLink() {

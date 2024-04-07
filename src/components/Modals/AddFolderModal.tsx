@@ -1,11 +1,10 @@
 import ModalBase from './ModalBase';
 import ModalInput from './ModalInput';
 import { useState } from 'react';
-import type { ModalBaseProps } from './ModalBase';
 import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
 
-function AddFolderModal({ onClose, children }: ModalBaseProps) {
+function AddFolderModal({ onClose }: { onClose: () => void }) {
   const [folder, setFolder] = useState('');
 
   function addFolder() {

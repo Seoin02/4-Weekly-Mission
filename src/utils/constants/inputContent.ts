@@ -1,4 +1,12 @@
-const INPUT_CONTENT = {
+type Key = 'id' | 'password' | 'passwordRepeat';
+
+export interface InputContent {
+  placeholder: string;
+  type: string;
+  errorMessage: string;
+}
+
+const INPUT_CONTENT: Record<Key, InputContent> = {
   id: {
     placeholder: '아이디를 입력해주세요.',
     type: 'text',
