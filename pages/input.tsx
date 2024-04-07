@@ -7,11 +7,11 @@ export default function Input() {
   const [id, setId] = useState<StringOrNumber>('');
   const [password, setPassword] = useState<StringOrNumber>();
 
-  const handleIdChange = (id: StringOrNumber) => {
+  const handleIdChange = () => {
     setId(id);
   };
 
-  const handlePasswordChange = (password: StringOrNumber) => {
+  const handlePasswordChange = () => {
     setPassword(password);
   };
 

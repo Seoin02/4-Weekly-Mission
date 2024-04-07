@@ -1,12 +1,13 @@
-type Key = 'id' | 'password' | 'passwordRepeat';
+export type Key = 'id' | 'password' | 'passwordRepeat';
+export type text = 'placeholder' | 'type' | 'errorMessage';
 
-export interface InputContent {
+export interface InputText {
   placeholder: string;
   type: string;
   errorMessage: string;
 }
 
-const INPUT_CONTENT: Record<Key, InputContent> = {
+const INPUT_CONTENT: Record<Key, InputText> = {
   id: {
     placeholder: '아이디를 입력해주세요.',
     type: 'text',
@@ -22,6 +23,6 @@ const INPUT_CONTENT: Record<Key, InputContent> = {
     type: 'password',
     errorMessage: '비밀번호가 일치하지 않습니다.',
   },
-};
+} as const;
 
 export default INPUT_CONTENT;

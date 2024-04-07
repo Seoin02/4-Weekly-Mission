@@ -3,10 +3,19 @@ import Image from 'next/image';
 import styles from './input.module.css';
 import Error from './Error';
 import VALID_CHECK from '@/src/utils/constants/validCheck';
-import { Props } from './InputType';
 import INPUT_CONTENT from '@/src/utils/constants/inputContent';
+import { Key } from '@/src/utils/constants/inputContent';
+import { StringOrNumber } from './InputType';
 
-const TextForm = ({ kind, onChange, passwordCheck }: Props) => {
+const TextForm = ({
+  kind,
+  onChange,
+  passwordCheck,
+}: {
+  kind: Key;
+  onChange?: () => void;
+  passwordCheck?: StringOrNumber;
+}) => {
   //이쪽이 타입을 받아서 파라미터 설정하는것
   const [isActive, setIsActive] = useState(true);
   const [currentType, setCurrentType] = useState(INPUT_CONTENT[kind].type);
@@ -43,7 +52,6 @@ const TextForm = ({ kind, onChange, passwordCheck }: Props) => {
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setValue(value);
-    onChange(value);
   };
 
   const handleClick = () => {
@@ -53,7 +61,7 @@ const TextForm = ({ kind, onChange, passwordCheck }: Props) => {
 
   return (
     <div className={styles.loginBox}>
-      <div className={styles.contentHeader}>{INPUT_CONTENT[kind].title}</div>
+      <div className={styles.contentHeader}>{INPUT_CONTENT[kind].type}</div>
       <div className={styles.inputContent}>
         <input
           className={`${styles.inputBox} ${isError ? styles.defaultBorderColor : styles.errorBorderColor}`}
@@ -71,7 +79,7 @@ const TextForm = ({ kind, onChange, passwordCheck }: Props) => {
           </button>
         )}
       </div>
-      {isError === false && <Error kind={kind} text={text} />}
+      {isError === false && <Error kind={kind} text={'errorNone' || 'errorGrammar'} />}
     </div>
   );
 };
