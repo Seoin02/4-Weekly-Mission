@@ -9,11 +9,10 @@ import EditNameModal from '../Modals/EditNameModal';
 import ShareModal from '../Modals/ShareModal';
 import AddFolderModal from '../Modals/AddFolderModal';
 import type { LinkData } from '../apis/useGetLink';
-import { useAsync } from '../../hooks/useAsync';
 import Image from 'next/image';
 
 const folderFormatDate: (data: LinkData[]) => { name?: string | number; id?: string | number }[] = data => {
-  const formattedFolder = data.map(({ name, id }) => ({ name, id }));
+  const formattedFolder = data?.map(({ name, id }) => ({ name, id })) ?? [];
   return [DEFAULT_FOLDER, ...formattedFolder];
 };
 
@@ -25,6 +24,7 @@ export default function FilterBar() {
       name?: string | number;
     }[]
   >();
+  const [allFolderData, setAllFolderData] = useState<LinkData[] | undefined>();
   const [folderName, setFolderName] = useState(DEFAULT_FOLDER.name);
   const { loading, error, data: linksData } = useGetLink(folderId);
 
@@ -45,20 +45,12 @@ export default function FilterBar() {
     setFolderName(name);
   };
 
-  // const useGetData = (folderId: string) => {
-  //   const getDatas = useCallback(() => axiosInstance.get<LinkData[]>('users/4/folders'), []);
-  //   const { execute, loading, error, data } = useAsync(getDatas);
-
-  //   useEffect(() => {
-  //     execute();
-  //   }, []);
-  // };
-
   useEffect(() => {
     async function fetchData() {
       try {
         const { data } = await axiosInstance.get('users/4/folders');
         setFolderData(folderFormatDate(data.data));
+        setAllFolderData(data.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -126,8 +118,8 @@ export default function FilterBar() {
             </div>
           ) : null}
         </div>
-        <div className={!linksData.length ? '' : styles.cardStyle}>
-          {!loading ? <Card data={linksData} /> : <div>Loading...</div>}
+        <div className={!allFolderData?.length ? '' : styles.cardStyle}>
+          {!loading ? <Card folderData={allFolderData} /> : <div>Loading...</div>}
         </div>
       </div>
     </>

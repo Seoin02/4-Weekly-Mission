@@ -53,7 +53,7 @@ const useGetLink = (folderId = DEFAULT_FOLDER.id) => {
     description,
   });
 
-  const linksData = (data || []).map(mapDataFormat).map(mapLinksData);
+  const linksData = Array.isArray(data) ? data.map(mapDataFormat).map(mapLinksData) : [];
   return { execute, loading, error, data: linksData };
 };
 

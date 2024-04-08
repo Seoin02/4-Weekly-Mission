@@ -1,9 +1,16 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export const useAsync = (asyncFunction: () => Promise<any>) => {
+interface AsyncResponse<T> {
+  loading: boolean;
+  error: boolean | undefined;
+  data: T | null;
+  execute: () => void;
+}
+
+export const useAsync = <T,>(asyncFunction: () => Promise<{ data: T }>): AsyncResponse<T> => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<T | null>(null);
 
   const useEffectOnce = (callback: () => void) => {
     useEffect(() => {
@@ -15,9 +22,10 @@ export const useAsync = (asyncFunction: () => Promise<any>) => {
     setLoading(true);
     setError(false);
     setData(null);
+
     try {
       const response = await asyncFunction();
-      setData(response?.data?.data);
+      setData(response.data);
       return response;
     } catch (error) {
       setError(true);
@@ -27,6 +35,5 @@ export const useAsync = (asyncFunction: () => Promise<any>) => {
   };
 
   useEffectOnce(execute);
-
   return { execute, loading, error, data };
 };
