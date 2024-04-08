@@ -4,9 +4,8 @@ import FolderInfo from './FolderInfo';
 import LinkBar from './LinkBar';
 import FilterBar from '../FilterBar/FilterBar';
 import SearchBar from '../SearchBar/SearchBar';
-import type { HeaderProps } from '../Header/Header';
 
-export default function Section({ isShared }: HeaderProps) {
+export default function Section({ isShared }: { isShared?: boolean }) {
   return (
     <>
       <section className={isShared ? styles.sectionShared : styles.sectionFolder}>

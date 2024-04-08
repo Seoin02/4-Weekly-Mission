@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react';
 import { axiosInstance } from '../../utils/axiosInstance';
-import { ProfileData } from './Header';
-import styles from './Header.module.css'
+import styles from './Header.module.css';
 
-function SharedProfile({ userData }: { userData: ProfileData }) {
-  const [user, setUser] = useState<ProfileData | null>(null);
+export interface userData {
+  email: string;
+  id: number;
+  name: string;
+  profileImageSource: string;
+}
+
+function SharedProfile() {
+  const [user, setUser] = useState<userData | null>(null);
   const sharedFetchData = async () => {
     try {
       const response = await axiosInstance.get('sample/user');
@@ -17,6 +23,7 @@ function SharedProfile({ userData }: { userData: ProfileData }) {
   useEffect(() => {
     sharedFetchData();
   }, []);
+
   return (
     <>
       {user === null ? (
@@ -24,9 +31,9 @@ function SharedProfile({ userData }: { userData: ProfileData }) {
           <button>로그인</button>
         </div>
       ) : (
-          <div className={styles.profileArea}>
-            <img className={styles.profileImage} src={user.profileImageSource} alt="프로필 이미지" />
-            <p className={styles.profileEmail}>{user.email}</p>
+        <div className={styles.profileArea}>
+          <img className={styles.profileImage} src={user.profileImageSource} alt="프로필 이미지" />
+          <p className={styles.profileEmail}>{user.email}</p>
         </div>
       )}
     </>

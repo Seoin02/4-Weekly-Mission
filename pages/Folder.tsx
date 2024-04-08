@@ -15,7 +15,7 @@ export default function Folder() {
     <>
       {isClient && (
         <ModalPortal>
-          <Header />
+          <Header isShared />
           <Section />
           <Footer />
         </ModalPortal>

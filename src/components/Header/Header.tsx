@@ -4,20 +4,7 @@ import Image from 'next/image';
 import styles from './Header.module.css';
 import Link from 'next/link';
 
-export interface ProfileData {
-  profileImageSource: string;
-  image_source: string;
-  email: string;
-  data: any[];
-}
-
-export interface HeaderProps {
-  isShared?: boolean;
-  user?: any;
-  userData?: ProfileData;
-}
-
-export default function Header({ isShared, user }: HeaderProps) {
+export default function Header({ isShared }: { isShared: boolean }) {
   return (
     <header className={isShared ? styles.headerShared : styles.headerFolder}>
       <div className={styles.headerLogo}>
@@ -25,7 +12,7 @@ export default function Header({ isShared, user }: HeaderProps) {
           <Image className={styles.logo} src="/images/logo.png" width={132} height={24} alt="Linkbrary로고" />
         </Link>
       </div>
-      {isShared ? <SharedProfile userData={user} /> : <FolderProfile userData={user} />}
+      {isShared ? <SharedProfile /> : <FolderProfile />}
     </header>
   );
 }
