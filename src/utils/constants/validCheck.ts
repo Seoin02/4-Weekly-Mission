@@ -1,6 +1,5 @@
 import { Check } from '@/src/components/Input/InputType';
-import EMAIL_REGEX from './emailRegex';
-import PASSWORD_REGEX from './passwordRegex';
+import { EMAIL_REGEX, PASSWORD_REGEX } from './regex';
 
 const VALID_CHECK: Check = {
   id: {

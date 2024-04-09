@@ -26,7 +26,7 @@ export default function Input() {
         </Link>
         <div>
           <span className={styles.signupSpan}>회원이 아니신가요? </span>
-          <Link href="./signin" className={styles.signupLink}>
+          <Link href="./signup" className={styles.signupLink}>
             회원 가입하기
           </Link>
         </div>
