@@ -4,6 +4,7 @@ import styles from '../src/components/Input/input.module.css';
 import { StringOrNumber } from '@/src/components/Input/InputType';
 import Link from 'next/link';
 import Image from 'next/image';
+import InputButton from '@/src/components/Input/inputButton';
 
 export default function Input() {
   const [id, setId] = useState<StringOrNumber>();
@@ -35,9 +36,14 @@ export default function Input() {
           </Link>
         </div>
       </div>
-      <TextForm kind="id" onChange={handleIdChange} />
-      <TextForm kind="password" onChange={handlePasswordChange} />
-      <TextForm kind="passwordRepeat" onChange={handlePasswordRepeatChange} passwordCheck={password} />
+      <div className={styles.formBox}>
+        <TextForm kind="id" onChange={handleIdChange} />
+        <TextForm kind="password" onChange={handlePasswordChange} />
+        <TextForm kind="passwordRepeat" onChange={handlePasswordRepeatChange} passwordCheck={password} />
+      </div>
+      <div>
+        <InputButton onClick={() => {}}>회원가입</InputButton>
+      </div>
     </div>
   );
 }
