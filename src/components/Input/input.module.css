@@ -145,3 +145,27 @@
   line-height: normal;
   cursor: pointer;
 }
+
+.socialLogin {
+  display: flex;
+  width: 400px;
+  padding: 12px 24px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--Linkbrary-gray20, #ccd5e3);
+  background: var(--Linkbrary-gray10, #e7effb);
+}
+
+.signupBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.socialLoginIcon {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}

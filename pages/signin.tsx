@@ -35,8 +35,23 @@ export default function Input() {
         <TextForm kind="id" onChange={handleIdChange} />
         <TextForm kind="password" onChange={handlePasswordChange} />
       </div>
-      <div>
+      <div className={styles.signupBottom}>
         <InputButton onClick={() => {}}>로그인</InputButton>
+        <div className={styles.socialLogin}>
+          <span>소셜 로그인</span>
+          <div className={styles.socialLoginIcon}>
+            <div>
+              <Link href="https://www.google.com">
+                <Image src="/images/Google.png" width={42} height={42} alt="구글 로그인 아이콘" />
+              </Link>
+            </div>
+            <div>
+              <Link href="https://www.kakaocorp.com/page">
+                <Image src="/images/Kakaotalk.png" width={42} height={42} alt="카카오톡 로그인 아이콘" />
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
