@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Section.module.css';
 import { axiosInstance } from '../../utils/axiosInstance';
-import type { LinkData } from '../apis/useGetLink';
+import { LinkData } from '../Card/Card';
 
 interface FolderInfoProps {
   data?: LinkData;
+  owner?: {
+    id: number;
+    name: string;
+    profileImageSource: string;
+  };
 }
 
 const FolderInfo: React.FC<FolderInfoProps> = () => {
-  const [folderData, setFolderData] = useState<LinkData | null>(null);
+  const [folderData, setFolderData] = useState<FolderInfoProps | null>(null);
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get('sample/folder');

@@ -1,4 +1,3 @@
-import search from './images/search.svg';
 import styles from './SearchBar.module.css';
 import Image from 'next/image';
 

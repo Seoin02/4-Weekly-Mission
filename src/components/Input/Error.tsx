@@ -1,7 +1,7 @@
 import styles from './input.module.css';
 import { useState, useEffect } from 'react';
-import ERROR_TEXT from '@/src/utils/constants/errorText';
-import { Key, text } from '@/src/utils/constants/errorText';
+import ERROR_TEXT from '@/src/constants/errorText';
+import { Key, text } from '@/src/constants/errorText';
 
 const Error = ({ kind, text }: { kind: Key; text: text }) => {
   const [errorText, setErrorText] = useState('');

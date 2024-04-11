@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
 import TextForm from '../src/components/Input/Input';
 import styles from '../src/components/Input/input.module.css';
-import { StringOrNumber } from '@/src/components/Input/InputType';
 import Link from 'next/link';
 import Image from 'next/image';
-import InputButton from '@/src/components/Input/inputButton';
+import InputButton from '../src/components/Input/InputButton';
 
 export default function Input() {
-  const [id, setId] = useState<StringOrNumber>();
-  const [password, setPassword] = useState<StringOrNumber>();
-  const [passwordRepeat, setPasswordRepeat] = useState<StringOrNumber>();
+  const [id, setId] = useState<string>();
+  const [password, setPassword] = useState<string>();
+  const [passwordRepeat, setPasswordRepeat] = useState<string>();
 
-  const handleIdChange = () => {
-    setId(id);
+  const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setId(e.target.value);
   };
 
-  const handlePasswordChange = () => {
-    setPassword(password);
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
   };
 
-  const handlePasswordRepeatChange = () => {
-    setPasswordRepeat(passwordRepeat);
+  const handlePasswordRepeatChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordRepeat(e.target.value);
   };
 
   return (
@@ -39,7 +38,7 @@ export default function Input() {
       <div className={styles.formBox}>
         <TextForm kind="id" onChange={handleIdChange} />
         <TextForm kind="password" onChange={handlePasswordChange} />
-        <TextForm kind="passwordRepeat" onChange={handlePasswordRepeatChange} passwordCheck={password} />
+        <TextForm kind="passwordRepeat" onChange={handlePasswordRepeatChange} passwordValue={password} />
       </div>
       <div>
         <InputButton onClick={() => {}}>회원가입</InputButton>

@@ -1,37 +1,33 @@
 import { useCallback, useEffect } from 'react';
 import { axiosInstance } from '../../utils/axiosInstance';
-import DEFAULT_FOLDER from '../../utils/constants/folder';
+import DEFAULT_FOLDER from '../../constants/folder';
 import { useAsync } from '../../hooks/useAsync';
 import { format } from 'date-fns/format';
 import { getElapsedTime } from '../../utils/getElapsedTime';
+import { StringOrNumber } from '../Input/InputType';
+import { FolderData, LinkData } from '../Card/Card';
 
-export interface LinkData {
-  id?: string | number;
-  name?: string | number;
-  created_at: string;
-  createdAt?: string;
+export interface FormattedLinkProps {
+  id: StringOrNumber;
+  createdAt: string;
   url: string;
-  image_source?: string;
-  imageSource?: string;
-  title?: string;
-  description?: string;
-  owner?: {
-    id: number;
-    name: string;
-    profileImageSource: string;
-  };
+  imageSource: string;
+  description: string;
+  alt: string;
+  elapsedTime: string;
 }
 
-const mapLinksData = (link: LinkData) => {
-  const { id, created_at, url, image_source, title, description } = link;
+const mapLinksData = (link: FolderData | LinkData): FormattedLinkProps => {
+  const { id, createdAt, url, imageSource, title, description } = link;
+
   return {
     id,
     url,
-    image_source,
+    imageSource,
     alt: `${title ?? url}의 대표 이미지`,
-    elapsedTime: getElapsedTime(created_at),
-    description,
-    created_at: format(new Date(created_at), 'yyyy. MM. dd'),
+    elapsedTime: getElapsedTime(createdAt),
+    description: description ?? '',
+    createdAt: format(new Date(createdAt), 'yyyy. MM. dd'),
   };
 };
 
@@ -44,10 +40,10 @@ const useGetLink = (folderId = DEFAULT_FOLDER.id) => {
     execute();
   }, [folderId]);
 
-  const mapDataFormat = ({ id, created_at, url, image_source, title, description }: LinkData) => ({
+  const mapDataFormat = ({ id, createdAt, url, imageSource, title, description }: LinkData) => ({
     id,
-    created_at,
-    image_source,
+    createdAt,
+    imageSource,
     url,
     title,
     description,

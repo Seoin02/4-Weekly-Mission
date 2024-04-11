@@ -10,7 +10,7 @@ export default function Shared() {
       <Header isShared />
       <Section isShared />
       <SearchBar />
-      <CardList />
+      <CardList isShared />
       <Footer />
     </>
   );

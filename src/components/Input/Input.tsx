@@ -2,48 +2,49 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import styles from './input.module.css';
 import Error from './Error';
-import VALID_CHECK from '@/src/utils/constants/validCheck';
-import INPUT_CONTENT from '@/src/utils/constants/inputContent';
-import { Key } from '@/src/utils/constants/inputContent';
-import { StringOrNumber } from './InputType';
+import VALID_CHECK from '@/src/constants/validCheck';
+import INPUT_CONTENT from '@/src/constants/inputContent';
+import { Key } from '@/src/constants/inputContent';
 
 const TextForm = ({
   kind,
   onChange,
-  passwordCheck,
+  passwordValue,
 }: {
   kind: Key;
-  onChange: () => void;
-  passwordCheck?: StringOrNumber;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  passwordValue?: string;
 }) => {
   //이쪽이 타입을 받아서 파라미터 설정하는것
   const [isActive, setIsActive] = useState(true);
   const [currentType, setCurrentType] = useState(INPUT_CONTENT[kind].type);
   const [value, setValue] = useState('');
-  const [isError, setIsError] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [errorType, setErrorType] = useState('');
+  console.log(passwordValue);
 
   //블러 시 정규식에 맞는지 체크
   const checkValidValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsError(false);
+    console.log(value, e.target.value);
     if (value.trim() !== '') {
       if (kind === 'passwordRepeat') {
-        if (passwordCheck === value) {
-          setIsError(true);
-        } else {
+        if (passwordValue === value) {
           setIsError(false);
+        } else {
+          setIsError(true);
           setErrorType('errorGrammar');
         }
       } else {
         if (VALID_CHECK[kind].isValidCheck.test(value.trim())) {
           setIsError(true);
         } else {
-          setIsError(false);
+          setIsError(true);
           setErrorType('errorGrammar');
         }
       }
     } else {
-      setIsError(false);
+      setIsError(true);
       setErrorType('errorNone');
     }
   };
@@ -52,7 +53,7 @@ const TextForm = ({
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setValue(value);
-    onChange();
+    onChange(e);
   };
 
   const handleClick = () => {
@@ -65,7 +66,7 @@ const TextForm = ({
       <div className={styles.contentHeader}>{INPUT_CONTENT[kind].type}</div>
       <div className={styles.inputContent}>
         <input
-          className={`${styles.inputBox} ${isError ? styles.defaultBorderColor : styles.errorBorderColor}`}
+          className={`${styles.inputBox} ${!isError ? styles.defaultBorderColor : styles.errorBorderColor}`}
           placeholder={INPUT_CONTENT[kind].placeholder}
           type={isActive ? 'text' : 'password'}
           onBlur={checkValidValue}
@@ -80,7 +81,7 @@ const TextForm = ({
           </button>
         )}
       </div>
-      {isError === false && <Error kind={kind} text={'errorNone' || 'errorGrammar'} />}
+      {isError && <Error kind={kind} text={'errorNone' || 'errorGrammar'} />}
     </div>
   );
 };

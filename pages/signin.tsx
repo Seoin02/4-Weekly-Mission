@@ -4,7 +4,7 @@ import styles from '../src/components/Input/input.module.css';
 import { StringOrNumber } from '@/src/components/Input/InputType';
 import Link from 'next/link';
 import Image from 'next/image';
-import InputButton from '@/src/components/Input/inputButton';
+import InputButton from '../src/components/Input/InputButton';
 
 export default function Input() {
   const [id, setId] = useState<StringOrNumber>();

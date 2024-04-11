@@ -20,7 +20,7 @@ const INPUT_CONTENT: Record<Key, InputText> = {
   },
   passwordRepeat: {
     placeholder: '비밀번호를 확인해주세요.',
-    type: 'password',
+    type: 'passwordRepeat',
     errorMessage: '비밀번호가 일치하지 않습니다.',
   },
 } as const;

@@ -2,13 +2,13 @@ import React, { useState, useEffect, useCallback } from 'react';
 import styles from './FilterBar.module.css';
 import useGetLink from '../apis/useGetLink';
 import Card from '../Card/Card';
-import DEFAULT_FOLDER from '../../utils/constants/folder';
+import DEFAULT_FOLDER from '../../constants/folder';
 import { axiosInstance } from '../../utils/axiosInstance';
 import DeleteFolderModal from '../Modals/DeleteFolderModal';
 import EditNameModal from '../Modals/EditNameModal';
 import ShareModal from '../Modals/ShareModal';
 import AddFolderModal from '../Modals/AddFolderModal';
-import type { LinkData } from '../apis/useGetLink';
+import { LinkData } from '../Card/Card';
 import Image from 'next/image';
 
 const folderFormatDate: (data: LinkData[]) => { name?: string | number; id?: string | number }[] = data => {
