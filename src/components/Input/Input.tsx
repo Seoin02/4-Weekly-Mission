@@ -73,9 +73,9 @@ const TextForm = ({
         {kind !== 'id' && (
           <button className={styles.toggleEye} onClick={handleClick}>
             {isActive ? (
-              <Image src="/images/eye-on.svg" width={16} height={16} alt="뜬 눈모양 아이콘" />
+              <Image src="/images/eye-on.png" width={16} height={16} alt="뜬 눈모양 아이콘" />
             ) : (
-              <Image src="/images/eye-off.svg" width={16} height={16} alt="감은 눈모양 아이콘" />
+              <Image src="/images/eye-off.png" width={16} height={16} alt="감은 눈모양 아이콘" />
             )}
           </button>
         )}
