@@ -5,7 +5,7 @@ import { useAsync } from '../../hooks/useAsync';
 import { format } from 'date-fns/format';
 import { getElapsedTime } from '../../utils/getElapsedTime';
 import { StringOrNumber } from '../Input/InputType';
-import { FolderData, LinkData } from '../Card/Card';
+import type { LinkData } from '../Card/Card';
 
 export interface FormattedLinkProps {
   id: StringOrNumber;

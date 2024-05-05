@@ -9,6 +9,4 @@ const fetchCardData = async () => {
   }
 };
 
-console.log(fetchCardData);
-
 export default fetchCardData;

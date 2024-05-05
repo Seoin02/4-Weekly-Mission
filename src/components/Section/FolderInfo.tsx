@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Section.module.css';
 import { axiosInstance } from '../../utils/axiosInstance';
-import { LinkData } from '../Card/Card';
+import type { LinkData } from '../Card/Card';
 
 interface FolderInfoProps {
   data?: LinkData;
@@ -12,7 +12,7 @@ interface FolderInfoProps {
   };
 }
 
-const FolderInfo: React.FC<FolderInfoProps> = () => {
+const FolderInfo = () => {
   const [folderData, setFolderData] = useState<FolderInfoProps | null>(null);
   const fetchData = async () => {
     try {

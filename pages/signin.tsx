@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import TextForm from '../src/components/Input/Input';
 import styles from '../src/components/Input/input.module.css';
 import { StringOrNumber } from '@/src/components/Input/InputType';
@@ -10,12 +10,12 @@ export default function Input() {
   const [id, setId] = useState<StringOrNumber>();
   const [password, setPassword] = useState<StringOrNumber>();
 
-  const handleIdChange = () => {
-    setId(id);
+  const handleIdChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setId(e.target.value);
   };
 
-  const handlePasswordChange = () => {
-    setPassword(password);
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
   };
 
   return (

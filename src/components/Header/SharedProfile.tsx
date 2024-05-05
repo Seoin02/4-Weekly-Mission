@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { axiosInstance } from '../../utils/axiosInstance';
 import styles from './Header.module.css';
 
-export interface userData {
+export interface UserData {
   email: string;
   id: number;
   name: string;
@@ -10,7 +10,7 @@ export interface userData {
 }
 
 function SharedProfile() {
-  const [user, setUser] = useState<userData | null>(null);
+  const [user, setUser] = useState<UserData | null>(null);
   const sharedFetchData = async () => {
     try {
       const response = await axiosInstance.get('sample/user');

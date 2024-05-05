@@ -49,13 +49,15 @@ export const formatDataForCard = (props: FolderData | LinkData): CardProps => {
   const imageSource = 'image_source' in props ? props.image_source : props.imageSource;
   const createAt = 'created_at' in props ? props.created_at : props.createdAt;
 
+  const { id, url, title, description } = props;
+
   return {
-    id: props.id,
-    url: props.url,
+    id,
+    url,
     imageSource,
-    title: props.title,
+    title,
     createAt,
-    description: props.description,
+    description,
   };
 };
 
@@ -97,7 +99,7 @@ const Card = ({ data }: { data: CardProps[] }) => {
                 </button>
                 {popoverMenuOpen && <PopoverMenu onClose={handleClosePopoverMenu} />}
               </div>
-              <Link className={styles.link} href={data?.url || ''}>
+              <Link className={styles.link} href={data.url}>
                 <div className={styles.cardText}>{data.description}</div>
                 <div className={styles.uploadDate}>{dayjs(data.createAt).format('YYYY.MM.DD')}</div>
               </Link>

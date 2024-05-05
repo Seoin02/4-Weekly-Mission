@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
 import styles from './input.module.css';
 import Error from './Error';
 import VALID_CHECK from '@/src/constants/validCheck';
 import INPUT_CONTENT from '@/src/constants/inputContent';
-import { Key } from '@/src/constants/inputContent';
+import type { Key } from '@/src/constants/inputContent';
 
 const TextForm = ({
   kind,
@@ -12,21 +12,19 @@ const TextForm = ({
   passwordValue,
 }: {
   kind: Key;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   passwordValue?: string;
 }) => {
   //이쪽이 타입을 받아서 파라미터 설정하는것
-  const [isActive, setIsActive] = useState(true);
+  const [isHideValue, setIsHideValue] = useState(true);
   const [currentType, setCurrentType] = useState(INPUT_CONTENT[kind].type);
   const [value, setValue] = useState('');
   const [isError, setIsError] = useState(false);
   const [errorType, setErrorType] = useState('');
-  console.log(passwordValue);
 
   //블러 시 정규식에 맞는지 체크
-  const checkValidValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const checkValidValue = (e: ChangeEvent<HTMLInputElement>) => {
     setIsError(false);
-    console.log(value, e.target.value);
     if (value.trim() !== '') {
       if (kind === 'passwordRepeat') {
         if (passwordValue === value) {
@@ -58,32 +56,31 @@ const TextForm = ({
 
   const handleClick = () => {
     currentType === 'password' ? setCurrentType('text') : setCurrentType('password');
-    setIsActive(!isActive);
-  };
+    setIsHideValue(!isHideValue);
 
-  return (
-    <div className={styles.loginBox}>
-      <div className={styles.contentHeader}>{INPUT_CONTENT[kind].type}</div>
-      <div className={styles.inputContent}>
-        <input
-          className={`${styles.inputBox} ${!isError ? styles.defaultBorderColor : styles.errorBorderColor}`}
-          placeholder={INPUT_CONTENT[kind].placeholder}
-          type={isActive ? 'text' : 'password'}
-          onBlur={checkValidValue}
-          onChange={onChangeValue}></input>
-        {kind !== 'id' && (
-          <button className={styles.toggleEye} onClick={handleClick}>
-            {isActive ? (
-              <Image src="/images/eye-on.png" width={16} height={16} alt="뜬 눈모양 아이콘" />
-            ) : (
-              <Image src="/images/eye-off.png" width={16} height={16} alt="감은 눈모양 아이콘" />
-            )}
-          </button>
-        )}
+    return (
+      <div className={styles.loginBox}>
+        <div className={styles.contentHeader}>{INPUT_CONTENT[kind].type}</div>
+        <div className={styles.inputContent}>
+          <input
+            className={`${styles.inputBox} ${!isError ? styles.defaultBorderColor : styles.errorBorderColor}`}
+            placeholder={INPUT_CONTENT[kind].placeholder}
+            type={isHideValue ? 'tIxt' : 'password'}
+            onBlur={checkValidValue}
+            onChange={onChangeValue}></input>
+          {kind !== 'id' && (
+            <button className={styles.toggleEye} onClick={handleClick}>
+              {isHideValue ? (
+                <Image src="/images/eye-on.png" width={16} height={16} alt="뜬 눈모양 아이콘" />
+              ) : (
+                <Image src="/images/eye-off.png" width={16} height={16} alt="감은 눈모양 아이콘" />
+              )}
+            </button>
+          )}
+        </div>
+        {isError && <Error kind={kind} text={'errorNone' || 'errorGrammar'} />}
       </div>
-      {isError && <Error kind={kind} text={'errorNone' || 'errorGrammar'} />}
-    </div>
-  );
+    );
+  };
 };
-
 export default TextForm;

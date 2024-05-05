@@ -20,7 +20,7 @@ function FolderProfile() {
   useEffect(() => {
     folderFetchData();
   }, []);
-  console.log(user);
+
   return (
     <>
       {user?.data == null ? (

@@ -34,8 +34,6 @@ export default function CardList({ isShared }: { isShared: boolean }) {
     fetchData();
   }, []);
 
-  console.log(folderData);
-
   return (
     <main className={styles.mainSharedCard}>
       <div className={styles.cardList}>{cardData.length > 0 && <Card data={isShared ? cardData : folderData} />}</div>

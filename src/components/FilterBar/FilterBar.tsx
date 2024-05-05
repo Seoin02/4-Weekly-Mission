@@ -8,7 +8,7 @@ import DeleteFolderModal from '../Modals/DeleteFolderModal';
 import EditNameModal from '../Modals/EditNameModal';
 import ShareModal from '../Modals/ShareModal';
 import AddFolderModal from '../Modals/AddFolderModal';
-import { LinkData } from '../Card/Card';
+import type { LinkData } from '../Card/Card';
 import Image from 'next/image';
 
 const folderFormatDate: (data: LinkData[]) => { name?: string | number; id?: string | number }[] = data => {
