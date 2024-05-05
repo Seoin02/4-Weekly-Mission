@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styles from './FilterBar.module.css';
 import useGetLink from '../apis/useGetLink';
-import Card from '../Card/Card';
+import Card, { CardProps, FolderData } from '../Card/Card';
 import DEFAULT_FOLDER from '../../constants/folder';
 import { axiosInstance } from '../../utils/axiosInstance';
 import DeleteFolderModal from '../Modals/DeleteFolderModal';
@@ -24,7 +24,7 @@ export default function FilterBar() {
       name?: string | number;
     }[]
   >();
-  const [allFolderData, setAllFolderData] = useState<LinkData[] | undefined>();
+  const [allFolderData, setAllFolderData] = useState<CardProps[]>();
   const [folderName, setFolderName] = useState(DEFAULT_FOLDER.name);
   const { loading, error, data: linksData } = useGetLink(folderId);
 
@@ -118,8 +118,8 @@ export default function FilterBar() {
             </div>
           ) : null}
         </div>
-        <div className={!allFolderData?.length ? '' : styles.cardStyle}>
-          {!loading ? <Card folderData={allFolderData} /> : <div>Loading...</div>}
+        <div className={!allFolderData ? '' : styles.cardStyle}>
+          {!loading && allFolderData ? <Card data={allFolderData} /> : <div>Loading...</div>}
         </div>
       </div>
     </>

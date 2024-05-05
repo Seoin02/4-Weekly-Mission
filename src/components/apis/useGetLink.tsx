@@ -13,11 +13,10 @@ export interface FormattedLinkProps {
   url: string;
   imageSource: string;
   description: string;
-  alt: string;
-  elapsedTime: string;
+  title: string;
 }
 
-const mapLinksData = (link: FolderData | LinkData): FormattedLinkProps => {
+const mapLinksData = (link: FormattedLinkProps) => {
   const { id, createdAt, url, imageSource, title, description } = link;
 
   return {

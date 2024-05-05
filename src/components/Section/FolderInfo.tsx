@@ -32,12 +32,14 @@ const FolderInfo: React.FC<FolderInfoProps> = () => {
   return (
     <>
       {folderData.owner && (
-        <div className={styles.titleContent}>
-          <img className={styles.titleLogo} src={folderData.owner.profileImageSource} alt="코드잇 로고" />
-          <p>{folderData.owner.name}</p>
-        </div>
+        <>
+          <div className={styles.titleContent}>
+            <img className={styles.titleLogo} src={folderData.owner.profileImageSource} alt="코드잇 로고" />
+            <p>{folderData.owner.name}</p>
+          </div>
+          <p className={styles.bookmark}>{folderData.owner.name}</p>
+        </>
       )}
-      <p className={styles.bookmark}>{folderData.name}</p>
     </>
   );
 };

@@ -42,17 +42,3 @@ export default function CardList({ isShared }: { isShared: boolean }) {
     </main>
   );
 }
-
-// useEffect(() => {
-//   const fetchData = async () => {
-//     try {
-//       const { data } = await axiosInstance.get('sample/folder');
-//       const newCardData: CardProps[] = data.folder.links((link: LinkData) => formatDataForCard(link));
-
-//       setCardData(newCardData);
-//     } catch (error) {
-//       console.error('Error fetching data:', error);
-//     }
-//   };
-//   fetchData();
-// }, []);

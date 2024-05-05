@@ -33,6 +33,7 @@ export interface LinkData {
   description: string;
   createdAt: string;
   imageSource: string;
+  name?: string;
 }
 
 export interface CardProps {
