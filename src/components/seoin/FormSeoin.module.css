@@ -1,0 +1,19 @@
+.Small {
+}
+
+.Medium {
+}
+
+.Large {
+}
+
+.Label {
+}
+
+.Error {
+  border: 1px red solid;
+}
+
+.ErrorText {
+  color: red;
+}
